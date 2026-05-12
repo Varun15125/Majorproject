@@ -1,24 +1,38 @@
 <%= layout("layouts/boilerplate")%>
 
-    <body>
-        <h3>Listings Details :</h3>
-        <ul>
-            <li>Title: <%= listing.title %>
-            </li>
-            <li>Description: <%= listing.description %>
-            </li>
-            <li>Price: &#8377; <%= listing.price.toLocaleString("en-IN") %>
-            </li>
-            <li>Location: <%= listing.location %>
-            </li>
-            <li>Country: <%= listing.country %>
-            </li>
-        </ul>
-        <br>
-        <a href="/listings/<%= listing._id %>/edit">Edit this listing</a>
-        <br><br>
-        <form method="POST" action="/listings/<%= listing._id %>?_method=DELETE">
-            <button>Delete Listing</button>
-        </form>
+    <div class="row mt-3">
+        <div class="col-8 offset-2">
 
-    </body>
+
+            <div>
+                <div class="card col-6 offset-3 show-card">
+                    <h3>Listings Details :</h3>
+                    <img src="<%=listing.image.url %>" class="card-img-top show-img" alt="listing_image">
+                    <div class="card-body">
+                        <p class="card-text">
+                            <b>
+                                <%= listing.title %>
+                            </b>
+                            <br>
+                            <%= listing.description %>
+                                <br>
+                                <b> &#8377;</b>
+                                <%= listing.price.toLocaleString("en-IN") %>
+                                    <br>
+                                    <%= listing.location %>
+                                        <br>
+                                        <%= listing.country %>
+                        </p>
+                    </div>
+                </div>
+                <div class="btns">
+
+                    <a href="/listings/<%= listing._id %>/edit" class="btn btn-dark col-1 offset-3">
+                        Edit</a>
+                    <form method="POST" action="/listings/<%= listing._id %>?_method=DELETE">
+                        <button class="btn btn-dark delete-btn offset-5">Delete</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>

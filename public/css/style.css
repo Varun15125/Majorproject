@@ -1,5 +1,13 @@
  body {
+
      font-family: "Plus Jakata Sans", sans-serif !important;
+     display: flex;
+     flex-direction: column;
+     min-height: 100vh;
+ }
+
+ .container {
+     flex: 1;
  }
 
  /* navbar */
@@ -8,7 +16,7 @@
      background-color: white;
  }
 
- .fa-mountain-city {
+ .fa-compass {
      color: #fe424d;
      font-size: 2rem;
  }
@@ -87,5 +95,38 @@
 
  .card-img-overlay:hover {
      opacity: 0.2;
-     background-color: white;
+     background-color: black;
+ }
+
+ /* new  listing page */
+ .add-btn {
+     background-color: #fe424d !important;
+     border: none !important;
+
+ }
+
+ .edit-btn {
+     background-color: #fe424d !important;
+     border: none !important;
+ }
+
+ /* Show page */
+ .show-img {
+     height: 30vh;
+ }
+
+ .delete-btn {
+     background-color: #fe424d !important;
+     border: none !important;
+ }
+
+ .btns {
+     display: flex;
+     margin-bottom: 30px;
+
+ }
+
+ .show-card {
+     padding-left: 0;
+     padding-right: 0;
  }
