@@ -26,14 +26,18 @@ const listingSchema = new Schema({
              : v,
             }
           },
+
     price: Number,
+
     location: String,
+
     country: String,
 
     
     review:[{
         type:Schema.Types.ObjectId,
-    },  
+        ref:"Review",
+        },  
    ]
 });
 
