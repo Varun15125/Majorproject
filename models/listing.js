@@ -1,9 +1,10 @@
 const mongoose = require("mongoose");
+const review = require("./review.js");
 const Schema = mongoose.Schema;
 
 const listingSchema = new Schema({
     title:{
-        type: String,
+        type: String, 
         required: true,
     },
     description: String,
@@ -28,6 +29,12 @@ const listingSchema = new Schema({
     price: Number,
     location: String,
     country: String,
+
+    
+    review:[{
+        type:Schema.Types.ObjectId,
+    },  
+   ]
 });
 
 const Listing =mongoose.model("Listing",listingSchema);

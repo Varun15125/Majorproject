@@ -8,6 +8,7 @@ const wrapAsync= require("./utils/wrapAsync.js")
 const path = require("path");
 const ExpressError= require("./utils/ExpressError.js")
 const {listingSchema}= require("./schema.js")
+const Review= require("./models/review.js");
 
 const MONGO_URL = "mongodb://127.0.0.1:27017/wanderlust";
 
@@ -39,7 +40,7 @@ const validateListing = (req,res,next)=>{
       let {error} = listingSchema.validate(req.body);
    if(error){
     let errMsg =error.details.map((el)=> el.message).join(",");
-    throw new ExpressError(400,error);
+    throw new ExpressError(400,errMsg);
    }else{
     next();
    }
@@ -59,7 +60,7 @@ app.get("/listings/new",(req,res)=>{
 });
 
 //show route
-app.get("/listings/:id", validateListing, wrapAsync(async (req,res)=>{
+app.get("/listings/:id", wrapAsync(async (req,res)=>{
     let {id} = req.params;
     id=id.trim();
     const listing = await Listing.findById(id);
@@ -67,7 +68,7 @@ app.get("/listings/:id", validateListing, wrapAsync(async (req,res)=>{
 }));
 
 //Create Route
-app.post("/listings",wrapAsync(async(req,res,next)=>{
+app.post("/listings",validateListing,wrapAsync(async(req,res,next)=>{
     const newListing=new Listing(req.body.listing);
     await newListing.save();
     res.redirect("/listings"); 
@@ -100,6 +101,20 @@ app.delete("/listings/:id",wrapAsync(async(req,res)=>{
     console.log("deleted listing is ",deletedListing);
     res.redirect("/listings");
 }));
+
+// Reviews
+//post route
+app.post("/listings/:id/reviews",async(req,res)=>{
+   let listing= await Listing.findById(req.params.id);
+   let newReview = new Review(req.body.Review);
+
+   listing.review.push(newReview);
+    await newReview.save();
+    await listing.save();
+
+    console.log("new review saved");
+    res.send("new review saved");
+})
 
 // app.get("/testListing", async(req,res)=>{
 //     let sampleListing = new Listing({
