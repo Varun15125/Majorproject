@@ -73,7 +73,7 @@ app.get("/listings/new",(req,res)=>{
 app.get("/listings/:id", wrapAsync(async (req,res)=>{
     let {id} = req.params;
     id=id.trim();
-    const listing = await Listing.findById(id);
+    const listing = await Listing.findById(id).populate("review");
     res.render("listings/show.ejs",{listing});
 }));
 

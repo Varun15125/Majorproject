@@ -5,7 +5,7 @@
 
 
             <div>
-                <div class="card col-6 offset-3 show-card">
+                <div class="card col-6 offset-3 show-card listing-card">
                     <h3><%= listing.title %></h3>
                     <img src="<%=listing.image.url %>" class="card-img-top show-img" alt="listing_image">
                     <div class="card-body">
@@ -61,7 +61,21 @@
             </form>
             <hr>
             <h4>ALL Reviews</h4>
-            <p><%= listing.reviews %></p>
+            <% if (listing.review.length === 0) { %>
+                <p>No reviews yet.</p>
+            <% } else { %>
+                <div class="row">
+                <% for (let review of listing.review) { %>
+                    <div class="card col-5 ms-3 mb-3">
+                        <div class="card-body">
+                            <h5 class="card-title">sam alt</h5>
+                            <p class="card-text"><%= review.comment %></p>
+                            <p class="card-text">Rating: <%= review.rating %> stars</p>
+                        </div>
+                    </div>
+                <% } %>
+                </div>
+            <% } %>
         </div>
 
     </div>
