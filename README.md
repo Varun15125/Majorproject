@@ -38,37 +38,6 @@ StayEasy is a full-stack hotel booking web application built with Node.js, Expre
 - `views/` - EJS templates and layouts
 - `public/` - static CSS and client-side JavaScript
 
-## Code Structure
-
-- `app.js`
-  - configures Express, session store, Passport, flash messages, and global middleware
-  - mounts route modules for listings, reviews, and user authentication
-  - includes error handling and the server listener
-- `cloudConfig.js`
-  - sets up Cloudinary client and Multer storage for file uploads
-- `middleware.js`
-  - defines authentication checks and authorization guards
-  - validates request payloads against Joi schemas
-  - preserves redirect URLs for login flow
-- `schema.js`
-  - exports `listingSchema` and `reviewSchema` for request validation
-- `models/`
-  - `listing.js` - listing schema with owner, reviews, and Cloudinary image data
-  - `review.js` - review schema with author reference and rating/comment fields
-  - `user.js` - user schema with Passport-Local-Mongoose plugin for local auth
-- `routes/`
-  - `listing.js` - CRUD routes for listings, including image upload and ownership checks
-  - `review.js` - review creation and deletion routes nested under listings
-  - `user.js` - signup, login, and logout routes
-- `controllers/`
-  - `listings.js` - listing controllers for index, show, create, update, and delete
-  - `reviews.js` - review controllers for creating and deleting reviews
-  - `users.js` - user controllers for signup, login, and logout actions
-- `views/`
-  - contains EJS templates for layout, listing pages, user forms, and error pages
-- `public/`
-  - contains static CSS and client-side assets used by views
-
 ## Installation
 
 1. Clone the repository
